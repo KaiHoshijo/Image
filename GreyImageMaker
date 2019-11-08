@@ -1,0 +1,55 @@
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+public class GreyImageMaker {
+    public static void main(String[] main) {
+        int rows = 640;
+        int cols = 480;
+        int[][] matrix = new int[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                matrix[i][j] = (int) ( i * Math.pow(Math.E, j * (Math.PI / rows)) );
+            }
+        }
+        makeImage("H:\\a.jpg", matrix);
+}
+    /**
+     * This method writes a greyscale matrix to a png, jpg, or gif file.
+     *
+     * Students, don't worry about this function... it's just so we can have fun in class, you're not expected to
+     * understand it.
+     *
+     * @param filename  The filename to write to.  Must have .jpg, .png, or .gif extension.
+     * @param matrix The 2D array of data for the image.  Row-Major format.
+     */
+    public static void makeImage(String filename, int[][] matrix) {
+        int width = matrix[0].length;
+        int height = matrix.length;
+        String ext = filename.split("[.]")[filename.split("[.]").length - 1].toLowerCase();
+
+        if (!ext.equals("jpg") && !ext.equals("png") && !ext.equals("gif")) {
+            System.err.println("Could not identify image extension: " + ext);
+            return;
+        }
+
+        BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        for (int x = 0; x < height; x++) {
+            for (int y = 0; y < width; y++) {
+                Color c = new Color(matrix[x][y] & 0xFF, matrix[x][y] & 0xFF, matrix[x][y] & 0xFF);
+                img.setRGB(y, x, c.getRGB());
+            }
+        }
+
+        try {
+            File ImageFile = new File(filename);
+            ImageIO.write(img, ext, ImageFile);
+        }
+        catch (IOException ex) {
+            System.err.println("Could not write file: " + ex.toString());
+        }
+    }
+}
