@@ -13,6 +13,7 @@ public class GreyImageMaker {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 matrix[i][j] = (int) ( i * Math.pow(Math.E, j * (Math.PI / rows)) );
+                // matrix[i][j] = (int) ( i * Math.pow(Math.E, j * (Math.PI / (i+1))) );
             }
         }
         makeImage("H:\\a.jpg", matrix);
