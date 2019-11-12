@@ -12,9 +12,28 @@ public class GreyImageMaker {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                matrix[i][j] = (int) ( i * Math.pow(Math.E, j * (Math.PI / rows)) );
+                // matrix[i][j] = (int) ( i * Math.pow(Math.E, j * (Math.PI / rows)) );
                 // matrix[i][j] = (int) ( i * Math.pow(Math.E, j * (Math.PI / (i+1))) );
-                // (int) ( i * j + Math.sin(Math.PI / Math.E) );
+                // matrix[i][j] = (int) ( i * j + Math.sin(Math.PI / Math.E) );
+                // matrix[i][j] = (int) ( i * Math.PI + j * Math.E ) ;
+                // matrix[i][j] = (int) (Math.cos(i / 2) + Math.sin(j / 2)) ;
+                // double newI = i / 10.0;
+                // double newJ = j / 10.0;
+                // double a = Math.cos(newI) + (1 / Math.sin(newJ));
+                // double b = Math.sin(newI) - (1 / Math.cos(newJ));
+                // matrix[i][j] = (int) ( a + b );
+                // double newI = i / 10.0;
+                // double newJ = j / 10.0;
+                // double a = Math.tan(newI) + (1 / Math.cos(newJ));
+                // double b = Math.sin(newI) - (1 / Math.tan(newJ));
+                // matrix[i][j] = (int) ( a + b );
+                // matrix[i][j] = (int) ( Math.pow(i, 2) + Math.pow(j, 2) - Math.sin(i + j) );
+                // matrix[i][j] = (int) ( Math.pow(i, 3) + Math.pow(j, 3) ) / 1000;
+                // matrix[i][j] = (int) ( Math.pow(i / 2, 4) + Math.pow(j / 2, 4)) * 2; 
+                // matrix[i][j] = (int) (Math.pow(j/2,2) - Math.pow(i/2,2) );
+                // matrix[i][j] = (int) ( Math.tan((j + 1) / 8.0) / Math.sin((i + 1) / 8.0) );
+                // matrix[i][j] = (int) ( Math.pow(i, 2) - Math.pow(j,2) ) % 100;
+                matrix[i][j] = (int) ( j / (i+1) ) % 255;
             }
         }
         makeImage("H:\\a.jpg", matrix);
